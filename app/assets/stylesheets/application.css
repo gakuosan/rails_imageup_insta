@@ -1,0 +1,21 @@
+body{
+    background: radial-gradient(#F2B9A1, #EA6264);
+}
+ 
+th{
+    font-size: 20px;
+    text-align: center;
+    padding: 10px;
+}
+
+td{
+    font-size: 20px;
+    text-align: center;
+    padding: 10px;
+}
+
+.login{
+    font-size: 30px;
+    text-align: center;
+    padding: 50px;
+}
