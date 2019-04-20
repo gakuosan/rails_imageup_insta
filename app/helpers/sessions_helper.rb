@@ -1,8 +1,17 @@
 module SessionsHelper
-  def current_user
-    @current_user||= User.find_by(id: session[:user_id])
+# 渡されたユーザーでログインする
+  def logged_in(user) 
+    @user=logged_in.user
+    session[:user_id] = user.id                                             
   end
+  # 現在ログイン中のユーザーを返す(いる場合)
+  def current_user
+    if session[:user_id]                                                        
+      @current_user ||= User.find_by(id: session[:user_id])   
+    end
+  end
+
   def logged_in?
-    current_user.present?  
+    current_user.present?
   end
 end

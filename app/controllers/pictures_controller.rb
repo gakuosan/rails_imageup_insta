@@ -1,6 +1,6 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in, only: [:new, :creeate]
+  before_action :logged_in, only: [:new, :create]
   before_action :correct_user, only: [:edit, :destroy]
 
   # GET /pictures
@@ -27,6 +27,8 @@ class PicturesController < ApplicationController
   
   def confirm
      @picture = Picture.new(picture_params)
+     @picture.user_id=current_user.id
+     
   end
   
   
@@ -38,6 +40,8 @@ class PicturesController < ApplicationController
   # POST /pictures.json
   def create
     @picture = Picture.new(picture_params)
+    @picture.user_id=current_user.id
+    render :new if @blog.invalid?
     if @picture.save
     Picturemailer.picture_mail(@picture).deliver
     redirect_to picture_path, notice: 'Picture was successfully created.'
@@ -66,6 +70,8 @@ class PicturesController < ApplicationController
       end
     end
   end
+  
+  
 
   # DELETE /pictures/1
   # DELETE /pictures/1.json
@@ -91,7 +97,7 @@ class PicturesController < ApplicationController
   def correct_user
     picture=Picture.find_by(params:[id])
     unless current_user.id==picture.user.id
-      redirect_to pictures_path
+    redirect_to pictures_path
     end
   end
   end

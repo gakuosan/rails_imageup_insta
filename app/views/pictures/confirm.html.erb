@@ -1,4 +1,4 @@
-<h1>確認画面</h1>
+<h1>確認画面　この投稿でOKですか？</h1>
 <%= form_with(model: @picture, url: pictures_path, local: true) do |form| %>
   <!-- 確認画面でアップロードした画像を表示させるための記述 -->
   <%= image_tag(@picture.image.url) if @picture.image && @picture.image.url %>
