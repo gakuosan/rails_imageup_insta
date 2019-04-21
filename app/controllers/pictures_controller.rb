@@ -1,6 +1,6 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
-  # before_action :logged_in, only: [:new, :create]
+  before_action :logged_in, only: [:new, :create]
   before_action :correct_user, only: [:edit, :destroy]
 
   # GET /pictures
@@ -29,8 +29,8 @@ class PicturesController < ApplicationController
      @picture = Picture.new(picture_params)
      @picture.user_id = current_user.id
      render :new if @picture.invalid?
+     end
   end
-  
   
   # GET /pictures/1/edit
   def edit
@@ -45,7 +45,6 @@ class PicturesController < ApplicationController
     if @picture.save
     Picturemailer.picture_mail(@picture).deliver
     redirect_to picture_path, notice: 'Picture was successfully created.'
-
     respond_to do |format|
       if @picture.save
         format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
@@ -54,8 +53,8 @@ class PicturesController < ApplicationController
         format.html { render :new }
         format.json { render json: @picture.errors, status: :unprocessable_entity }
       end
-      end
-  end
+    end
+   end
 
   # PATCH/PUT /pictures/1
   # PATCH/PUT /pictures/1.json
@@ -92,7 +91,7 @@ class PicturesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
   def picture_params
     # params.require(:picture).permit(:image, :image_cache,:name, :email, :content)
-        params.require(:picture).permit(:image, :image_cache, :content, :title)
+    params.require(:picture).permit(:image, :image_cache, :content, :title)
   end
     
   def correct_user
@@ -101,5 +100,5 @@ class PicturesController < ApplicationController
     redirect_to pictures_path
     end
   end
-  end
 end
+
