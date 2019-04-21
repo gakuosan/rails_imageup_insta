@@ -24,9 +24,12 @@
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %>
   
+  <%= f.label :prof_image %>
+  <%= f.file_field :prof_image %>
+  
   <%= f.label :prof_content %>
   <%= f.text_field :prof_content %>
-
+  
   <%= f.submit "Create my account" %>
   <% end %>
   

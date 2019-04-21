@@ -1,6 +1,6 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in, only: [:new, :create]
+  # before_action :logged_in, only: [:new, :create]
   before_action :correct_user, only: [:edit, :destroy]
 
   # GET /pictures
@@ -27,8 +27,8 @@ class PicturesController < ApplicationController
   
   def confirm
      @picture = Picture.new(picture_params)
-     @picture.user_id=current_user.id
-     
+     @picture.user_id = current_user.id
+     render :new if @picture.invalid?
   end
   
   
@@ -91,7 +91,8 @@ class PicturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
   def picture_params
-    params.require(:picture).permit(:image, :image_cache,:name, :email, :content)
+    # params.require(:picture).permit(:image, :image_cache,:name, :email, :content)
+        params.require(:picture).permit(:image, :image_cache, :content, :title)
   end
     
   def correct_user
