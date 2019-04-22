@@ -4,6 +4,7 @@
 
 <p>プロフィール画像: <%= image_tag @user.prof_image.url,size:'200x200' %></p>
     <% if image_tag @user.prof_image.url.present? %>
+    <<%= link_to "Profile", user_path(current_user.id) %>
     <% end %>
 
 <p>プロフィール欄: <%= @user.prof_content %></p>

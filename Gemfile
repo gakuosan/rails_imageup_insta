@@ -32,3 +32,4 @@ gem 'mini_magick'
 group :development do
   gem 'letter_opener_web', '~> 1.0'
 end
+
