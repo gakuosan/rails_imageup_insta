@@ -22,6 +22,7 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   
   config.action_mailer.default_url_options = { host: 'localhost:3000（cloud9だったら自分のcloud9のホスト名）' }
+  
   config.action_mailer.delivery_method = :letter_opener_web
   
   config.action_mailer.default_url_options = { host: 'mailer-ryuseimatsumoto.c9users.io:8080/' }
