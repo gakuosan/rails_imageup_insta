@@ -40,9 +40,8 @@ class PicturesController < ApplicationController
   
   def confirm
     @picture = Picture.new(picture_params)
-    #binding.pry
     @picture.user_id = current_user.id #現在ログインしているuserのidを、pictureのuser_idカラムに挿入する
-    #binding.pry
+    
     render :new if @picture.invalid?
   end
  

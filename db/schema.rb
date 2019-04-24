@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 20190418064857) do
 
   create_table "pictures", force: :cascade do |t|
     t.text "image"
+    t.text "title"
+    t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -32,6 +34,8 @@ ActiveRecord::Schema.define(version: 20190418064857) do
     t.string "name"
     t.string "email"
     t.string "password_digest"
+    t.text "prof_image"
+    t.text "prof_content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
