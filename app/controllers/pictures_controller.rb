@@ -26,7 +26,7 @@ class PicturesController < ApplicationController
     # binding.pry
     @picture = Picture.new(picture_params)
     @picture.user_id = current_user.id
-    
+ 
     respond_to do |format|
       if @picture.save
         format.html { redirect_to @picture, notice: 'Pictre was successfully created.' }
@@ -39,9 +39,11 @@ class PicturesController < ApplicationController
   end
   
   def confirm
+    #binding.pry
     @picture = Picture.new(picture_params)
-    @picture.user_id = current_user.id #現在ログインしているuserのidを、pictureのuser_idカラムに挿入する
-    
+    #binding.pry
+    @picture.user_id = current_user.id 
+    #現在ログインしているuserのidを、pictureのuser_idカラムに挿入する
     render :new if @picture.invalid?
   end
  
