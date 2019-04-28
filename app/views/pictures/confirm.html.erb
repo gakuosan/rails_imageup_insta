@@ -1,5 +1,5 @@
 <h1>確認画面</h1>
-<%= form_with(model: @picture, url: feeds_path, local: true) do |form| %>
+<%= form_with(model: @picture, url: pictures_path, local: true) do |form| %>
   <!-- 確認画面でアップロードした画像を表示させるための記述 -->
   <%= image_tag(@picture.image.url) if @picture.image && @picture.image.url %>
   <%= form.hidden_field :image_cache %>
@@ -11,14 +11,14 @@
 
 <h3>以下の内容で、送信する。</h3>
 
-<%= form_with(model: @picture, url: feeds_path, local: true) do |form| %>
+<%= form_with(model: @picture, url: pictures_path, local: true) do |form| %>
   <%= form.hidden_field :title %>
   <%= form.hidden_field :image_tag %>
   <%= form.hidden_field :content %>
   
 <% end %>
 
-<%= form_with(model: @picture, url: new_feed_path, local: true, method: 'get') do |form| %>
+<%= form_with(model: @picture, url: new_picture_path, local: true, method: 'get') do |form| %>
   <%= form.hidden_field :image_cache %>
   <%= form.hidden_field :title %>
   <%= form.hidden_field :content %>
