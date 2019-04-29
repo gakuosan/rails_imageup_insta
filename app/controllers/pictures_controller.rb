@@ -1,5 +1,5 @@
 class PicturesController < ApplicationController
-  before_action :set_feed, only: [:show, :edit, :update, :destroy]
+  before_action :set_picture, only: [:show, :edit, :update, :destroy]
   before_action :logged_in?, only:[:new,:create]
   before_action :correct_user, only: [:edit, :destroy]
   
