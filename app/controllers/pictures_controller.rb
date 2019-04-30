@@ -20,6 +20,7 @@ class PicturesController < ApplicationController
    end
    
   def edit
+    
   end
   
   def create
