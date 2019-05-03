@@ -1,6 +1,6 @@
 class PictureMailer < ApplicationMailer
  def picture_mail(contact)
  @picture = picture
- mail to: "自分のメールアドレス", subject: "お問い合わせの確認メール"
+ mail to: "gakuo1983@yahoo.co.jp", subject: "お問い合わせの確認メール"
  end
 end
