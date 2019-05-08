@@ -5,6 +5,7 @@ class PicturesController < ApplicationController
   
   def index
     @pictures = Picture.all
+    render :index
   end
   
   def show
@@ -30,7 +31,8 @@ class PicturesController < ApplicationController
  
     respond_to do |format|
       if @picture.save
-        format.html { redirect_to @picture, notice: 'Pictre was successfully created.' }
+        PictureMailer.picture_mail(@picture).deliver  ##追記
+        format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
         format.json { render :show, status: :created, location: @picture }
       else
         format.html { render :new }
@@ -51,7 +53,7 @@ class PicturesController < ApplicationController
   def update
     respond_to do |format|
       #binding.pry
-      if @picture.update(feed_params)
+      if @picture.update(picture_params)
         format.html { redirect_to @picture, notice: 'Picture was successfully updated.' }
         format.json { render :show, status: :ok, location: @picture }
       else
@@ -79,7 +81,7 @@ class PicturesController < ApplicationController
     
     # Never trust parameters from the scary internet, only allow the white list through.
     def picture_params
-      params.require(:picture).permit(:image, :image_cache, :title, :content)
+      params.require(:picture).permit(:name, :image, :image_cache, :title, :content)
     end
     
     def correct_user
