@@ -74,7 +74,7 @@ config.action_mailer.default_url_options = { host: 'https://frozen-fjord-94270.h
     authentication: :plain,
     enable_starttls_auto: true
   }
-end
 
- config.active_record.dump_schema_after_migration = false
 
+  config.active_record.dump_schema_after_migration = false
+ end
