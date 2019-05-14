@@ -1,7 +1,6 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in?, only:[:new,:create]
-  before_action :logged_in_user,only:[:index,:edit,:update,:destroy]
+  before_action :logged_in_user, only:[:index,:edit,:update,:destroy, :new]
   before_action :correct_user, only: [:edit, :destroy]
   
   def index
@@ -15,9 +14,9 @@ class PicturesController < ApplicationController
   
    def new
      if params[:back]
-     @picture= Picture.new(picture_params)
-   else
-     @picture = Picture.new
+       @picture= Picture.new(picture_params)
+     else
+       @picture = Picture.new
      end
    end
    
@@ -96,7 +95,7 @@ class PicturesController < ApplicationController
     def logged_in_user
       unless logged_in?
         flash[:danger] = "Please log in."
-        redirect_to @user
+        redirect_to new_user_path
       end
     end
 end
