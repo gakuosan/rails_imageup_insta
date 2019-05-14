@@ -19,7 +19,7 @@
       <tr>
         <td><%= picture.title %></td>
         <td><%= picture.user.name %></td>
-        <td><%= image_tag picture.image.url,size:'200x200' %></td>
+        <td><%= image_tag picture.image,size:'200x200' %></td>
         <td><%= picture.content %></td>
         <td><%= link_to 'Show', picture %></td>
           <% if current_user.id == picture.user.id %>

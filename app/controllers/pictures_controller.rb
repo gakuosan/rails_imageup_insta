@@ -1,6 +1,7 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
   before_action :logged_in?, only:[:new,:create]
+  before_action :logged_in_user,only:[:index,:edit,:update,:destroy]
   before_action :correct_user, only: [:edit, :destroy]
   
   def index
@@ -28,6 +29,7 @@ class PicturesController < ApplicationController
     # binding.pry
     @picture = Picture.new(picture_params)
     @picture.user_id = current_user.id
+    
  
     respond_to do |format|
       if @picture.save
@@ -88,6 +90,13 @@ class PicturesController < ApplicationController
       picture = Picture.find(params[:id])
       unless current_user.id == picture.user.id
         redirect_to pictures_path
+      end
+    end
+    
+    def logged_in_user
+      unless logged_in?
+        flash[:danger] = "Please log in."
+        redirect_to @user
       end
     end
 end
